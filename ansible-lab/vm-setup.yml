@@ -1,0 +1,16 @@
+- name: Set up DevOps Tools
+  hosts: ubuntu-vm
+  become: true
+  tasks:
+    - name: Update APT and install Docker
+      apt:
+        update_cache: yes
+        name: docker.io
+        state: present
+
+    - name: Enable Docker
+      systemd:
+        name: docker
+        enabled: true
+        state: started
+
